@@ -1,0 +1,4 @@
+F:/CodeInJLU/About_PANOC/FinalPANDACode/PANDA_SRC/build/CMakeFiles/ALL_BUILD.dir
+F:/CodeInJLU/About_PANOC/FinalPANDACode/PANDA_SRC/build/CMakeFiles/ZERO_CHECK.dir
+F:/CodeInJLU/About_PANOC/FinalPANDACode/PANDA_SRC/build/PANDA/CMakeFiles/PANDA_lib.dir
+F:/CodeInJLU/About_PANOC/FinalPANDACode/PANDA_SRC/build/PANDA/CMakeFiles/PANDA_fake.dir

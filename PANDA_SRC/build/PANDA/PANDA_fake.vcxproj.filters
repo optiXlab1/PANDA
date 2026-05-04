@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\PANDA\matrix_operations.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\PANDA\lbfgs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\PANDA\panda_eval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\PANDA\panda.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\PANDA\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3DE9E1E3-D955-3505-99DD-D41375B690B9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

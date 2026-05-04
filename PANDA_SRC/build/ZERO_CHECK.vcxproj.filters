@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\CodeInJLU\About_PANOC\FinalPANDACode\PANDA_SRC\build\CMakeFiles\c4fa00610be42f301ff64bf1ec0d115a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C3E2B8C4-2D0C-3D51-B2B6-28040BC8C737}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
