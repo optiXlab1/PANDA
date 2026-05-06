@@ -138,13 +138,13 @@ def backward_only_from_traj(coc, demo, theta, traj_fwd, strategy='COC', ep=None,
 
     if strategy.upper() == 'COC':
         clqr = SafePDP.EQCLQR()
-        auxsys = coc.getAuxSys(opt_sol=traj_fwd, threshold=1e-5)
+        auxsys = coc.getAuxSys(opt_sol=traj_fwd, threshold=1e-4)
         clqr.auxsys2Eqctlqr(auxsys=auxsys)
 
         mem_bwd_before = get_process_memory_mb()
         print(f"{tag} before aux_sol | mem = {mem_bwd_before:.2f} MB")
 
-        aux_sol = clqr.eqctlqrSolver(threshold=1e-5)
+        aux_sol = clqr.eqctlqrSolver(threshold=1e-4)
 
         mem_bwd_after = get_process_memory_mb()
         print(

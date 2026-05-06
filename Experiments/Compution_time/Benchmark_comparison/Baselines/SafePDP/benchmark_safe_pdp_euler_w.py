@@ -109,9 +109,9 @@ def backward_only_from_traj(coc, demo, theta, traj_fwd, strategy='COC'):
 
     if strategy.upper() == 'COC':
         clqr = SafePDP.EQCLQR()
-        auxsys = coc.getAuxSys(opt_sol=traj_fwd, threshold=1e-5)
+        auxsys = coc.getAuxSys(opt_sol=traj_fwd, threshold=1e-4)
         clqr.auxsys2Eqctlqr(auxsys=auxsys)
-        aux_sol = clqr.eqctlqrSolver(threshold=1e-5)
+        aux_sol = clqr.eqctlqrSolver(threshold=1e-4)
         return imitation_l2_loss_and_grad(demo, traj_fwd, aux_sol)
 
     if strategy.upper() == 'BARRIER':

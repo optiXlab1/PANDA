@@ -178,7 +178,7 @@ def create_ocp_sensitivity(N, p_global_values=None):
     ocp.solver_options.regularize_method = "NO_REGULARIZE"
 
     ocp.solver_options.nlp_solver_max_iter = 2000
-    ocp.solver_options.tol = 1e-6
+    ocp.solver_options.tol = 1e-4
     ocp.solver_options.print_level = 0
 
     return ocp

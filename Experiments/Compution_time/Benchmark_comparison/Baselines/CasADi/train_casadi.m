@@ -455,8 +455,8 @@ function S = build_trailer_opti_direct(nx, nu, N, dt, L, lb, ub, theta_dim, vari
         opts.ipopt.print_level = 0;
         opts.ipopt.sb = 'yes';
         opts.ipopt.max_iter = 1000;
-        opts.ipopt.tol = 1e-6;
-        opts.ipopt.acceptable_tol = 1e-5;
+        opts.ipopt.tol = 1e-4;
+        opts.ipopt.acceptable_tol = 1e-4;
         opti.solver('ipopt', opts);
 
     elseif strcmp(solver_name, 'sqpmethod')
