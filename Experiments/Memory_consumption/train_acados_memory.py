@@ -173,8 +173,8 @@ def create_ocp_sensitivity(N, p_global_values=None):
 
     ocp.p_global_values = np.asarray(p_global_values, dtype=float)
 
-    ocp.constraints.lbu = np.array([-1.2, -1.2], dtype=float)
-    ocp.constraints.ubu = np.array([1.2, 1.2], dtype=float)
+    ocp.constraints.lbu = np.array([-0.8, -0.8], dtype=float)
+    ocp.constraints.ubu = np.array([0.8, 0.8], dtype=float)
     ocp.constraints.idxbu = np.array([0, 1], dtype=int)
     ocp.constraints.x0 = X0_DEFAULT.copy()
 
