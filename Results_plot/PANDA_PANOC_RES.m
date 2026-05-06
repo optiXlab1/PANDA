@@ -2,7 +2,6 @@ clc;
 clear;
 close all;
 
-%% ================== 文件读取 ==================
 T_panoc = readtable('PANOC_RES_0.csv');
 T_panda = readtable('PANDA_RES_0.csv');
 
@@ -12,7 +11,6 @@ res_panda = T_panda{:,2};
 k_panoc = 1:length(res_panoc);
 k_panda = 1:length(res_panda);
 
-%% ================== 绘图参数设置 ==================
 font_Name = 'Times New Roman';
 figure_width = 10;        % cm
 figure_hight = 4;       % cm
@@ -24,12 +22,10 @@ figure_Name = 'panoc_panda_residual_singlecol';
 blueColor = [0 0 1];      % PANOC
 redColor  = [1 0 0];      % PANDA
 
-%% ================== 全局 LaTeX/字体设置 ==================
 set(groot,'defaultTextInterpreter','latex');
 set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 
-%% ================== 作图 ==================
 fig = figure;
 set(fig,'unit','centimeters','position',[5,5,figure_width,figure_hight]);
 set(fig,'color','w');
@@ -74,7 +70,7 @@ set(gca, ...
     'Box', 'on', ...
     'Layer', 'top');
 set(gca,'YMinorTick','off');
-%% ================== 保存 PDF ==================
+
 set(fig,'PaperUnits','centimeters');
 set(fig,'PaperPosition',[0,0,figure_width,figure_hight]);
 set(fig,'PaperSize',[figure_width,figure_hight]);

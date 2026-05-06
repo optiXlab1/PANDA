@@ -2,12 +2,6 @@ clc;
 clear;
 close all;
 
-%% =========================================================
-%  Solver timing comparison (stacked horizontal bar)
-%  只画时间对比图
-%% =========================================================
-
-%% ---------------------- 用户改这里 -----------------------
 files = {
     'training_log_panda.csv'
     'training_log_acados.csv'
@@ -27,7 +21,6 @@ figure_Name = 'timing_comparison_horizontal_singlecol';
 %% --------------------------------------------------------
 
 
-%% ================== 统一风格（按之前约定） ==================
 font_Name = 'Times New Roman';
 figure_width = 10;
 figure_hight = 4.0;
@@ -36,14 +29,13 @@ figure_FontSize = 8;
 axis_Width = 1.2;
 legendLW   = 0.6;
 
-blueColor = [0.05 0.05 0.95];   % Forward：浅蓝
-redColor  = [0.95 0.05 0.05];   % Backward：浅红
+blueColor = [0.05 0.05 0.95];
+redColor  = [0.95 0.05 0.05];
 
 set(groot,'defaultTextInterpreter','latex');
 set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaultLegendInterpreter','tex');
 
-%% ================== 读取并统一字段 ==================
 nMethod = numel(files);
 
 forwardMean  = zeros(nMethod,1);
@@ -61,14 +53,12 @@ for i = 1:nMethod
     totalMean(i)    = forwardMean(i) + backwardMean(i);
 end
 
-%% 顺序：从上到下 SafePDP, CasADi, acados, PANDA
 plotOrder = [4 3 2 1];
 methodNames_plot = methodNames(plotOrder);
 forward_plot     = forwardMean(plotOrder);
 backward_plot    = backwardMean(plotOrder);
 total_plot       = totalMean(plotOrder);
 
-%% ================== 作图 ==================
 fig = figure;
 set(fig,'unit','centimeters','position',[5,5,figure_width,figure_hight]);
 set(fig,'color','w');
@@ -80,7 +70,6 @@ box(ax,'on');
 Y = 1:nMethod;
 barHeight = 0.72;
 
-% 画堆叠条
 for i = 1:nMethod
     y0 = Y(i) - barHeight/2;
 
@@ -93,7 +82,6 @@ for i = 1:nMethod
         'FaceColor', redColor, 'EdgeColor', 'none');
 end
 
-% 轴设置
 set(ax, ...
     'YDir', 'reverse', ...
     'YTick', Y, ...
@@ -112,7 +100,6 @@ xlabel('Mean time per sample (s)', ...
 xmax = max(total_plot);
 xlim([0, xmax*1.3]);
 
-%% ================== 数值标注 ==================
 for i = 1:nMethod
     fwd = forward_plot(i);
     bwd = backward_plot(i);
@@ -145,7 +132,6 @@ for i = 1:nMethod
         'Color', [0.15 0.15 0.15]);
 end
 
-%% ================== 图例 ==================
 hLeg1 = patch(nan, nan, blueColor, 'EdgeColor', 'none');
 hLeg2 = patch(nan, nan, redColor, 'EdgeColor', 'none');
 
@@ -157,7 +143,6 @@ lgd = legend([hLeg1, hLeg2], {'Forward', 'Backward'}, ...
     'FontSize', figure_FontSize);
 lgd.LineWidth = legendLW;
 
-%% ================== 导出 PDF 和 SVG ==================
 set(fig,'PaperUnits','centimeters');
 set(fig,'PaperPosition',[0,0,figure_width,figure_hight]);
 set(fig,'PaperSize',[figure_width,figure_hight]);
@@ -169,7 +154,6 @@ if saveFig
     exportgraphics(fig, [figure_Name '.png'], 'Resolution', 300);
 end
 
-%% ====================== 局部函数 ==========================
 function data = pickNumericColumn(T, candidates)
     vars = T.Properties.VariableNames;
     idx = [];
@@ -181,7 +165,7 @@ function data = pickNumericColumn(T, candidates)
         end
     end
     if isempty(idx)
-        error('没找到列：%s', strjoin(candidates, ' / '));
+        error('Not found column：%s', strjoin(candidates, ' / '));
     end
     data = T{:, idx};
     data = data(~isnan(data));

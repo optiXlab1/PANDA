@@ -3,7 +3,7 @@ clear; clc; close all;
 clear mex;
 import casadi.*
 
-%% ------------------- 参数设置 -------------------
+%% ------------------- Parameter set -------------------
 nx = 3; 
 nu = 2; 
 N  = 80; 
