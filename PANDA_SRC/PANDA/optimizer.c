@@ -46,7 +46,7 @@ int solve_problem(real_t* solution)
 
         log_residual(residual_fp, i_panda, current_residual);
 
-        if (current_residual > MACHINE_ACCURACY) {
+        if (isfinite(current_residual) && current_residual >= 0.0) {
             save_solution(solution);
         }
     }

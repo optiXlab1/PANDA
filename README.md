@@ -47,6 +47,14 @@ For the baseline solvers, please refer to:
 
 First, compile the PANDA MEX interface.
 
+The initialization fix corrects the local Lipschitz estimate and checks the
+initial upper model before line search. It also keeps L-BFGS secant pairs
+consistent when the step size changes. The bundled Windows x64
+`panda.mexw64` files include these fixes and preserve the final solution
+at convergence. They were rebuilt with MATLAB R2024a and MSVC 2019.
+Run `PANDA_SRC/Matlab/test_panda_mex.m` for a basic solve check; rebuild
+the interface when using a different platform.
+
 Please make sure that CMake and a MATLAB-supported compiler are installed. Then run:
 
 ```powershell

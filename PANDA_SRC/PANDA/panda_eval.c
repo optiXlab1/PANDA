@@ -41,7 +41,7 @@ static real_t build_shift_and_get_norm(const real_t* x, real_t* x_shift)
  * Estimate a local Lipschitz constant by finite differencing the gradient:
  * L ≈ ||grad f(x + delta) - grad f(x)|| / ||delta||.
  */
-static real_t estimate_local_lipschitz(const real_t* x, const real_t* df_x)
+static real_t estimate_local_lipschitz(const real_t* x)
 {
     real_t denominator;
     real_t numerator;
@@ -49,9 +49,10 @@ static real_t estimate_local_lipschitz(const real_t* x, const real_t* df_x)
     denominator = build_shift_and_get_norm(x, g_tmp_x);
     function_evaluator_f_df(g_tmp_x, g_tmp_df);
 
-    /* reuse g_tmp_x as a difference buffer: g_tmp_x = g_tmp_df - df_x */
-    vector_copy(g_tmp_df, g_tmp_x, g_dimension);
-    vector_add_ntimes(g_tmp_x, df_x, g_dimension, -1.0);
+    /* Keep the gradients in distinct buffers; the shifted evaluation
+     * overwrites g_tmp_df. The shifted point is no longer needed. */
+    function_evaluator_f_df(x, g_tmp_x);
+    vector_add_ntimes(g_tmp_x, g_tmp_df, g_dimension, -1.0);
 
     numerator = vector_norm2(g_tmp_x, g_dimension);
 
@@ -100,7 +101,7 @@ static unsigned char check_upper_model(
         - inner_product(df_x, res, g_dimension)
         + (alpha / (2.0 * gamma)) * inner_product(res, res, g_dimension);
 
-    if (f_z <= rhs + 1e-6 * (1.0 + fabs(f_x))) {
+    if (f_z <= rhs + 1e-10 * (1.0 + fabs(f_x))) {
         return TRUE;
     }
     return FALSE;
@@ -197,13 +198,7 @@ int panda_eval_cleanup(void)
 real_t panda_eval_initial_gamma(const real_t* x, real_t alpha)
 {
     real_t L;
-    real_t f_dummy;
-
-    /* reuse g_tmp_df as grad buffer at x */
-    f_dummy = function_evaluator_f_df(x, g_tmp_df);
-    (void)f_dummy;
-
-    L = estimate_local_lipschitz(x, g_tmp_df);
+    L = estimate_local_lipschitz(x);
     if (L < 1e-2) {
         L = 1e-2;
     }
@@ -304,8 +299,6 @@ int panda_eval_prev(
     panda_prev_state* out
 )
 {
-    unsigned char upper_dummy;
-
     vector_copy(x, out->x, g_dimension);
     out->gamma = gamma;
 
@@ -321,7 +314,7 @@ int panda_eval_prev(
         out->df_z,
         out->res,
         &out->phi,
-        &upper_dummy
+        &out->upper_ok
     );
 }
 

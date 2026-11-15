@@ -18,3 +18,13 @@ endif()
 # subdirectory with PANDA library
 include_directories("${PROJECT_SOURCE_DIR}/PANDA")
 add_subdirectory(PANDA)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(test_initialization tests/test_initialization.c PANDA/function_evaluator.c)
+    target_link_libraries(test_initialization PANDA_fake)
+    if(NOT MSVC)
+        target_link_libraries(test_initialization m)
+    endif()
+    add_test(NAME initialization COMMAND test_initialization)
+endif()
