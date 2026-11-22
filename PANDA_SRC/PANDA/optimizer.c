@@ -96,7 +96,7 @@ int optimizer_init(struct optimizer_problem* problem_)
     params.n = problem->dimension;
     params.alpha = 1.0 - PROXIMAL_GRAD_DESC_SAFETY_VALUE;
     params.beta = 0.5;
-    params.minimum_gamma = 1e-6;
+    params.minimum_gamma = 1e-8;
     params.max_backtracks = FBE_LINESEARCH_MAX_ITERATIONS;
     params.lbfgs_memory = problem->solver_params.buffer_size;
     params.enable_gamma_enlarge =
